@@ -1,5 +1,3 @@
-// v2 Array.forEach();
-// https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/forEach
 var refShow = {
 	getElementsByClass : function(clss) {
 		var itemsfound = [];
@@ -11,9 +9,6 @@ var refShow = {
 		}
 		return itemsfound;
 	},
-	//
-	// http://stackoverflow.com/questions/143847/best-way-to-find-an-item-in-a-javascript-array
-	//
 	include: function (arr,obj) {
     	return (arr.indexOf(obj) !== -1);
 	},
@@ -22,22 +17,8 @@ var refShow = {
 		refShow.count++;
 		console.log(refShow.count);
 	},
-	//
-	// Test if JQuery is running. Also works as: if ($) { etc }
-	//
-	tst$ : function(){
-		if (jQuery) { 
-			console.log("JQUERY running");
-		} else {
-			console.log("NOJQUERY");
-		}
-	},
 	frag:document.createDocumentFragment(),
 	
-	// Why do this and duplicate functionality that jQuery provides?
-	// I don't know, I just like it. Doesn't harm anything since it is
-	// in the refShow namespace.
-	//
 	$ : function(id) {				 	
 		return document.getElementById(id);
 	},
@@ -73,14 +54,6 @@ var refShow = {
 			}
 		return OnList;
 	 },
-	// better off with JQUERY index()?
-	//
-	// For optimization's sake, what I'd really like is for this function to run once. 
-	// Have all other functions that need it to simply to refer to the created array.
-	// Because the shortRefs will never change.
-	//
-	// NB: This function honors whether the reference has been marked ON or OFF (3rd position).
-	//
 	shortRefs : function (ref){
 		var shortRef = shortRef || []; // need to make an array of the short refs
 		for ( var k=0; k < references.reflist.length; k++ ){
@@ -151,7 +124,6 @@ var refShow = {
 		for (i=0; i < refs.length;i++)	{
 			refs.Long.push(refs[i][0]);
 		}
-		// why not: http://www.wrichards.com/blog/2009/02/jquery-sorting-elements/ ???? 
 		refs.Long.sort();
 
 		for (i=0; i < refs.Long.length;i++)	{
@@ -259,12 +231,6 @@ var refShow = {
 	}
 
 }
-if (!window.addEventListener) { //http://msdn.microsoft.com/en-us/library/ms536343%28v=vs.85%29.aspx
-    window.addEventListener = function (type, listener, useCapture) {
-        attachEvent('on' + type, function() { listener(event) });
-    }
-}
-// IE 7 & 8 can't do INDEXOF!!!!
 if(!Array.indexOf){
 	Array.prototype.indexOf = function(obj){
 		for(var i=0; i<this.length; i++){
@@ -275,5 +241,3 @@ if(!Array.indexOf){
 	return -1;
 	}
 }
-//window.addEventListener('load', refShow.init, false);
-//$(document).ready(refShow.init);

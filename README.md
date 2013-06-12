@@ -1,7 +1,5 @@
-refManager
-==========
-
 References Manager for SDLMs
+==========
 
 The References Manager goal is simple: automate the usage of references in SDLMs. It consists of two files, refShow.js and [brand name].references.json. It currently requires being initalized at several places throughout the SDLMs, including on specific scenes (from userFunctions.js) if there is a reference inside a modal window.
 

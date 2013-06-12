@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<head>
+<script type="text/javascript" src="../jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="refShow.js"></script>
+<script type="text/javascript" src="refs.json"></script>
+<script type="text/javascript">$(refShow.init)</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href='http://fonts.googleapis.com/css?family=Asap' rel='stylesheet' type='text/css'>
+<title>References Manager Introduction</title>
+<style>
+	html {
+	}
+	.foot {
+		font-size: 10pt;
+		line-height: 1.25em;
+		margin-left: 20px;
+		margin-right: 20px;
+		text-indent: -13px;
+	}
+	body {
+		width: 640px;
+		font: normal 12pt/1.45em 'Asap', serif;
+		margin: 0 auto;
+		padding: 20px;
+		background: #D6D6D6;
+		background: -moz-radial-gradient(center, ellipse contain,#fff 0%, #d6d6d6 100%);
+	}
+	p {
+		width: 640px;
+		margin: 0 auto 0 auto;
+	}
+	p+ p {
+		width: 640px;
+		text-indent: 1.25em;
+		margin: 0 auto 0 auto;
+	}
+	h1 {
+		font: bold 16pt/1.35em 'Asap', serif;
+		margin: 10px 0;
+		padding: 0;
+	}
+	h2 {
+		font: normal 14pt/1.35em 'Asap', serif;
+		margin: 0 0 10px 0;
+		padding: 0;
+	}
+	code {
+		padding: 0;
+		font: 300 10pt/1.3em Monospace;
+	}
+	div {
+		margin: 10px 0;
+	}
+</style>
+</head>
+<body>
+	<h1>References Manager</h1>
+	<div>
+		<a href="mailto:mconover@webmd.net">mconover@webmd.net</a>
+	</div>
+	<div>
+		8.20.2012
+	</div>
+	<p>The References Manager goal is simple: automate the usage of references in SDLMs. It consists of two files, refShow.js and [brand name].references.json. It <acronym title="6-14-2012">currently</acronym> requires being initalized at several places throughout the SDLMs, including on specific scenes (from userFunctions.js) if there is a reference inside a modal window.</p>
+	<p>The References Manager speeds up building an SDLM a little and experience has shown that it greatly speeds up editing, especially if any references are deleted or shuffled. Also, by handing off work to JavaScript that would otherwise have to be done by hand it makes the whole process smoother.</p>
+	<p>The only file that needs to be created is the JSON. An <a href="aldurazyme.refs.json">example</a> is included with this README. The structure is like such:</p>
+	<div>
+		<code>
+			var references = {
+			"reflist":
+			[
+			["Cimaz R, Vijay S, Haase C, et al. Attenuated type I mucopolysaccharidosis in the differential diagnosis of juvenile idiopathic arthritis: a series of 13 patients with Scheie syndrome. &lt;em&gt;Clin Exp Rheumatol&lt;/em&gt;. 2006;24(2):196-202.",
+			"cimaz", 1
+			]
+			]
+		</code>
+	</div>
+	<p> The first item in the array is the HTML of the reference that will show on the references page in content_global or in footnotes. The second array item, in this case "cimaz", is a unique ID. The ID can be anything, I've been using the first few letters of the reference. I prefer not to use numbers, because that can get confusing if the references are shuffled.</p>
+	<p>The third item, here shown as "1", can be "0", nothing &mdash; that is, not there at all &mdash; or "1". If the reference is marked with nothing or "1" then that reference is "on" and will show up when called. If it is specifically marked with a "0" then it is off and will not show up. A reference can either be deleted or turned off, the functionality is the same. If references are asked to be turned off then asked to be put back in, simply turning it off is the more efficient move. </p>
+	<h1>Calling all the references</h1>
+	<p>There&#146;s several ways references are used in an SDLM, and therefore several ways to call them.</p>
+	<div>
+		In content_global.html you&#146;ll most likely do this: 		<pre><code>&lt;div id="content-ref"&gt;
+	&lt;h3>References&lt;/h3&gt;
+	&lt;div id="allRefsOL"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+	</div>
+	<div>
+		<code>
+			id="allRefsOL"</code>
+		means "All references in an ordered list". It will only display references that are "on". The references will show up in the order they are written in the JSON. So the first array item will be 1, the 20<sup>th</sup> will be 20.
+	</div>
+	<div>
+		<code>
+			id="allRefs"</code>
+		means "All references". It ignores whether the reference is marked "on" or "off". It's useful for seeing the HTML of the references.
+	</div>
+	<div>
+		<code>
+			id="allRefsAlpha"</code>
+		means "All references alphabetically". They are sorted by the first letter of the reference itself.
+	</div>
+	<h1>Superscripts</h1>
+	<p>The second most common call to a reference is with a superscript. This is where that unique ID comes in.</p>
+	<div>
+		a genetic lysosomal disorder<sup ref="cimaz"></sup>
+	</div>
+	<div>
+		The code for that is: 		<pre><code>a genetic lysosomal disorder&lt;sup ref="cimaz"&gt;&lt;/sup&gt;</code></pre>
+</div>	<p>If you have several superscript references in a row they need to be called individually. This may change in a future release. Such as:</p>
+	<pre><code>a genetic lysosomal disorder&lt;sup ref="cimaz"&gt;&lt;/sup&gt;&lt;sup&gt;,&lt;/sup&gt;&lt;sup ref="muenz"&gt;&lt;/sup&gt;</code></pre>	</div>
+	<div>
+		a genetic lysosomal disorder<sup ref="cimaz"></sup><sup>,</sup><sup ref="muenz"></sup>
+	</div>
+	<p>Or:</p>
+	<div>
+		<pre><code>&lt;sup ref="cimaz"&gt;&lt;/sup&gt;&lt;sup&gt;&amp;ndash;&lt;/sup&gt;&lt;sup ref="neufe"&gt;&lt;/sup&gt;</code></pre>
+</div>	<p>a genetic lysosomal disorder<sup ref="cimaz"></sup><sup>&ndash;</sup><sup ref="neufe"></sup></p>
+	<h1>Footnotes</h1>
+	<p>This isn&#146;t often required in an SDLM, but occasionally you&#146;ll be asked to put the whole footnote on the page, similar in fashion to superscripts.</p>
+	<div>
+		<pre><code>&lt;div class="foot" ref="muenz"&gt;&lt;/div&gt;</code></pre>
+</div>	<div class="foot" ref="muenz"></div>
+	<p>To order the footnotes from 1 on each page (which is a very rare request) change up the "ref" attribute a little.</p>
+	<div>
+		<pre><code>&lt;div class="foot" alpha-ref="cimaz"&gt;&lt;/div&gt;</code></pre>
+</div>	<div>
+		<pre><code>&lt;div class="foot" alpha-ref="muenz"&gt;&lt;/div&gt;</code></pre>
+</div>	<div class="foot" alpha-ref="cimaz"></div>
+	<div class="foot" alpha-ref="muenz"></div>
+	<p>Notice how the above two footnotes are 2 and 3? That&#146;s because there is another footnote request just above. In the JSON <code>
+			"cimaz"</code> is first and <code>
+			"muenz"</code> is second. The refmanager is counting the total number of footnotes (<code>
+			class="foot"</code>) on the page and then adding up all of them. There are 3 on the page, so <code>
+			alpha-ref="cimaz"</code> is 2 and <code>
+			alpha-ref="muenz"</code> is 3. </p>
+	<h1>Initializing Ref Manager for the SDLM</h1>
+	<p>Script tags need to be added to the core_index and core_index_m. This README does it as you&#146;ll need to.</p>
+	<div>
+		<pre><code>&lt;script type="text/javascript" src="refShow.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="aldurazyme.refs.json">&lt;/script&gt;</code></pre>
+</div>	<p>In userFunctions.js there are long desktop and mobile conditional statements. Put <code>
+			$(refShow.init)</code> in the code blocks of those conditionals. (I put them at the top, it doesn't matter though.) Also, as stated above, if there is a reference in a modal window it will need to be declared in the single section code. This is a recent statement I put in for an intro page:</p>
+	<div>
+		<pre><code>onsectionload_0 = function(){
+	$(refShow.init);  
+}</code></pre>
+</div>	<p>Why this is the case, I'm not sure. I'd like to change declaring <code>
+			refshow.init</code> all over the place to simply once.</p>
+	<p>Also, add <code>
+			$(refShow.init);</code> inside the <code>
+			enlargeImage</code> function in <code>
+			userFunctions.js</code> for superscripts or footnotes to show inside the image enlarge modal window.</p>
+	<h1>refShow.init</h1>
+	<p>In refShow.js there is an init method. Some of the statements therein are commented out. <code>
+			refShow.allRefsAlpha();</code> will conflict with <code>
+			refShow.allRefsOL();</code> so one or the other will need to be commented out. Otherwise, just use whichever methods you need.</p>
+</body>
+</html>

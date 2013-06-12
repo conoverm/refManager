@@ -1,0 +1,17 @@
+var references = { 
+	"reflist": [ 
+		["Cimaz R, Vijay S, Haase C, et al. Attenuated type I mucopolysaccharidosis in the differential diagnosis of juvenile idiopathic arthritis: a series of 13 patients with Scheie syndrome. <i>Clin Exp Rheumatol</i>. 2006;24(2):196-202.","cimaz"],
+		["Muenzer J, Wraith JE, Clarke LA; International Consensus Panel on Management and Treatment of Mucopolysaccharidosis I. Mucopolysaccharidosis I: management and treatment guidelines. <em>Pediatrics</em>. 2009;123(1):19-29.","muenz",],
+		["Wilcox WR. Lysosomal storage disorders: the need for better pediatric recognition and comprehensive care. <em>J Pediatr</em>. 2004;144(5)(suppl):S3-S14.","wilco",],
+		["Neufeld EF, Muenzer J. The mucopolysaccharidoses. In: Scriver CR, Beaudet AL, Sly WS, et al, eds. <em>The Metabolic and Molecular Bases of Inherited Disease</em>. Vol 3. 8th ed. New York, NY: McGraw-Hill; 2001:3421-3452.","neufe",],
+		["Pastores G, Arn P, Beck M, et al. The MPS I registry: design, methodology, and early findings of a global disease registry for monitoring patients with Mucopolysaccharidosis Type I. <em>Mol Genet Metab</em>. 2007;91(1):37-47.","pasto",],
+		["Moore D, Connock MJ, Wraith E, Lavery C. The prevalence of and survival in Mucopolysaccharidosis I: Hurler, Hurler-Scheie and Scheie syndromes in the UK. <em>Orphanet J Rare Dis</em>. 2008;3:24.","moore",],
+		["Meikle PJ, Hopwood JJ, Clague AE, Carey WF. Prevalence of lysosomal storage disorders. <em>JAMA</em>. 1999;281(3):249-254.","meikl",],
+		["Data on file. Genzyme Corporation.","genzy",],
+		["Murphy AM, Lambert DM, Treacy EP, O'Meara A, Lynch SA. Incidence and prevalence of mucopolysaccharidosis type 1 in the Irish Republic. <em>Arch Dis Child</em>. 2009;94(1):52-54.","murph",],
+		["Vijay S, Wraith JE. Clinical presentation and follow-up of patients with the attenuated phenotype of mucopolysaccharidosis type I. <em>Acta Paediatr</em>. 2005;94(7):872-877.","vijay",],
+		["Cimaz R, Coppa GV, Koné-Paut I, et al. Joint contractures in the absence of inflammation may indicate mucopolysaccharidosis. <em>Pediatr Rheumatol Online J</em>. 2009;7:18.","cimaz1",],
+		["Terlato NJ, Cox GF. Can mucopolysaccharidosis type I disease severity be predicted based on a patient's genotype? A comprehensive review of the literature. <em>Genet Med</em>. 2003;5(4):286-294.","terla",],
+		["Gabrielli O, Clarke LA, Bruni S, Coppa GV. Enzyme-replacement therapy in a 5-month-old boy with attenuated presymptomatic MPS I: 5-year follow-up. <em>Pediatrics</em>. 2010;125(1):e183-e187.","gabri",]
+		]
+};
